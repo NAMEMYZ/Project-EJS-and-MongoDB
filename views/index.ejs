@@ -1,0 +1,45 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquor Store</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>FWBAR Store</h1>
+
+    <!-- Search Form -->
+    <form action="/search" method="post" class="search-form">
+      <input type="text" name="search" placeholder="Search by name">
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- Filter Form -->
+    <form action="/filter" method="post" class="filter-form">
+      <label for="minPrice">Min Price:</label>
+      <input type="number" name="minPrice" step="0.01" min="0">
+      <label for="maxPrice">Max Price:</label>
+      <input type="number" name="maxPrice" step="0.01" min="0">
+      <button type="submit">Filter</button>
+    </form>
+
+    <!-- Product Cards -->
+    <% products.forEach(product => { %>
+      <div class="product-card">
+        <h3><%= product.name %></h3>
+        <p>Price: $<%= product.price.toFixed(2) %></p>
+        <p>Category: <%= product.category %></p>
+      </div>
+    <% }); %>
+  </div>
+</body>
+
+</html>

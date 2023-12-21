@@ -1,0 +1,32 @@
+/* public/style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  .container {
+    margin-top: 50px;
+  }
+  
+  .product-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    background-color: #eeff00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card h3 {
+    color: #343a40;
+  }
+  
+  .search-form {
+    margin-bottom: 20px;
+  }
+  
+  .filter-form {
+    margin-bottom: 20px;
+  }
+  
