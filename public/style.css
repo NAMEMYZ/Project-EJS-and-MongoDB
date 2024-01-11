@@ -2,7 +2,8 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
   }
   
   .container {
@@ -12,14 +13,22 @@ body {
   .product-card {
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #000000;
+    border: 1px solid #ffffff;
     border-radius: 8px;
-    background-color: #eeff00;
+    background-color: #FCE38A;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: rgb(0, 0, 0);
   }
   
+  .product-card img {
+    max-width: 100%; /* Ensure the image doesn't exceed the container width */
+    border-radius: 8px; /* Add rounded corners to the image */
+    border: 1px solid #ffffff;
+    margin-bottom: 10px; /* Add some space below the image */
+  }
+
   .product-card h3 {
-    color: #343a40;
+    color: #000000;
   }
   
   .search-form {

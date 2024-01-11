@@ -1,3 +1,4 @@
+// app.js
 require('dotenv').config()
 
 const express = require('express');
@@ -15,6 +16,7 @@ const productsSchema = new mongoose.Schema({
   category: String
 });
 
+productsSchema.add({ imagePath: String })
 const Product = mongoose.model('Product', productsSchema, 'products');
 
 app.set('view engine', 'ejs');
@@ -43,28 +45,38 @@ app.post('/filter', async (req, res) => {
 
 // 5. RESTful API routes
 // GET all liquors
-app.get('/api/liquors', async (req, res) => {
-  const liquors = await Liquor.find({});
-  res.json(liquors);
+app.get('/api/products', async (req, res) => {
+  const products = await Product.find({});
+  res.json(products);
 });
 
-// POST new liquor
-app.post('/api/liquors', async (req, res) => {
-  const newLiquor = new Liquor(req.body);
-  await newLiquor.save();
-  res.json(newLiquor);
+// POST new product
+app.post('/api/products', async (req, res) => {
+  const newProduct = new Product(req.body);
+  await newProduct.save();
+  res.json(newProduct);
 });
 
-// PUT update liquor
-app.put('/api/liquors/:id', async (req, res) => {
-  const updatedLiquor = await Liquor.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updatedLiquor);
+// PUT update product
+app.put('/api/products/:id', async (req, res) => {
+  const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(updatedProduct);
 });
 
-// DELETE liquor
-app.delete('/api/liquors/:id', async (req, res) => {
-  await Liquor.findByIdAndRemove(req.params.id);
-  res.json({ message: 'Liquor deleted successfully' });
+// DELETE product
+app.delete('/api/products/:id', async (req, res) => {
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+
+    if (!deletedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 const PORT = process.env.PORT || 3000;

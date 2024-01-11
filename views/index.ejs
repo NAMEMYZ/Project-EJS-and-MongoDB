@@ -14,32 +14,49 @@
 
 <body>
   <div class="container">
-    <h1>FWBAR Store</h1>
-
+    <h1>FWBAR Store <i class="beer fa-solid fa-champagne-glasses"></i></h1>
     <!-- Search Form -->
     <form action="/search" method="post" class="search-form">
       <input type="text" name="search" placeholder="Search by name">
       <button type="submit">Search</button>
     </form>
 
-    <!-- Filter Form -->
-    <form action="/filter" method="post" class="filter-form">
-      <label for="minPrice">Min Price:</label>
-      <input type="number" name="minPrice" step="0.01" min="0">
-      <label for="maxPrice">Max Price:</label>
-      <input type="number" name="maxPrice" step="0.01" min="0">
-      <button type="submit">Filter</button>
-    </form>
+<!-- Filter Form -->
+  <form action="/filter" method="post" class="filter-form">
+    <div class="form-row">
+      <div class="col-md-4">
+        <label for="minPrice">Min Price:</label>
+        <input type="number" name="minPrice" step="0.01" min="0" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" name="maxPrice" step="0.01" min="0" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label for="submit">Submit</label>
+        <button type="submit" class="btn btn-primary btn-block">Filter</button>
+      </div>
+    </div>
+  </form>
 
     <!-- Product Cards -->
-    <% products.forEach(product => { %>
-      <div class="product-card">
-        <h3><%= product.name %></h3>
-        <p>Price: $<%= product.price.toFixed(2) %></p>
-        <p>Category: <%= product.category %></p>
-      </div>
-    <% }); %>
+    <div class="row">
+      <% products.forEach(product => { %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="product-card">
+            <h3><%= product.name %></h3>
+            <% if (product.imagePath) { %>
+              <img src="<%= product.imagePath %>" alt="<%= product.name %>" class="img-fluid">
+            <% } %>
+            <p>Price: $<%= product.price %></p>
+            <p>Category: <%= product.category %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
   </div>
+  <script src="https://kit.fontawesome.com/4975c73799.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
+```
